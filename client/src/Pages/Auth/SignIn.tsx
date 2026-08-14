@@ -1,5 +1,5 @@
 import Toast from '@/components/Toast';
-import { url } from '@/constant/url';
+import { api, url } from '@/constant/url';
 import { Box, Button, Card, CircularProgress, IconButton, Link, TextField, Typography } from '@mui/material';
 import { isAxiosError } from 'axios';
 import { useState } from 'react';
@@ -26,18 +26,18 @@ const SignIn = () => {
     const [password, setPassword] = useState<string >()
 
     const handleGitHubSignUp = () => {
-      window.open("http://localhost:5000/api/auth/github")
+      window.open(`${url}/auth/github`)
     };
 
     const handleGoogleSignUp = () => {
-      window.open("http://localhost:5000/api/auth/google")
+      window.open(`${url}/auth/google`)
     };
 
     const handleSignUp = async() => {
       setLoading(true)
       try {
       
-      const response =  await url.post("http://localhost:5000/api/auth/sign-in", {
+      const response =  await api.post("/auth/sign-in", {
           username,
           password
         })
