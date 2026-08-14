@@ -2,13 +2,28 @@ import passport from "passport";
 import {Strategy as GitHubStrategy} from "passport-github2";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20"
 import userModel from "../models/user.model.js";
+import "dotenv/config"
 
-passport.use(new GitHubStrategy({
+const githubOptions = {
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callBackURL: "/api/auth/github/callback",
     scope: ["user:email"]
-}, async(accessToken, refreshToken, profile, done) => {
+}
+
+const googleOptions = {
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.Google_CLIENT_SECRET,
+    callbackURL: "/api/auth/google/callback",
+}
+
+console.log({
+    googleOptions,
+    githubOptions
+});
+
+
+passport.use(new GitHubStrategy(githubOptions, async(accessToken, refreshToken, profile, done) => {
     try {
        
         const githubId = profile.id.toString();
@@ -43,11 +58,7 @@ passport.use(new GitHubStrategy({
     }
 }))
 
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.Google_CLIENT_SECRET,
-    callbackURL: "/api/auth/google/callback",
-}, async(accessToken, refreshToken, profile, done) => {
+passport.use(new GoogleStrategy(googleOptions, async(accessToken, refreshToken, profile, done) => {
     try {
        
         const googleId = profile.id.toString();
