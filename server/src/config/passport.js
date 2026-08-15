@@ -14,7 +14,7 @@ const githubOptions = {
 const googleOptions = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "/api/auth/google/callback",
+    callbackURL: "https://learnx-sii0.onrender.com/api/auth/google/callback",
 }
 
 passport.use(new GitHubStrategy(githubOptions, async(accessToken, refreshToken, profile, done) => {
