@@ -57,6 +57,7 @@ passport.use(new GoogleStrategy(googleOptions, async(accessToken, refreshToken, 
     try {
        
         const googleId = profile.id.toString();
+        const username = profile.displayName.toLowerCase().replace(/\s+/g, "").replace(/[^a-z0-9]/g, "") + Math.floor(Math.random() * 10000)
         let user = await userModel.findOne({googleId});
 
         if (!user) {
@@ -73,7 +74,7 @@ passport.use(new GoogleStrategy(googleOptions, async(accessToken, refreshToken, 
         if (!user) {
             user = await userModel.create({
                 name: profile.displayName,
-                username: profile.username,
+                username: username,
                 email: profile.emails?.[0].value,
                 googleId,
                 avatar: profile.photos?.[0].value,
