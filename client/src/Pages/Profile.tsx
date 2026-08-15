@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios, {isAxiosError} from "axios"
 import type { User } from '@/types/types'
 import { Avatar, Skeleton, Box, Button, Card, Typography } from '@mui/material'
