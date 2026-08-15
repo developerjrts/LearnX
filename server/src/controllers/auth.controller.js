@@ -8,19 +8,19 @@ export const googleAuthentication = async(req, res) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-         maxAge: 7 * 24 * 60 * 60 * 1000
+        maxAge: 7 * 24 * 60 * 60 * 1000
     });
     res.redirect(`${process.env.CLIENT_URL}/dashboard`)
     
 }
-
+   
 export const githubAuthentication = async(req, res) => {
     const session_code = await generateToken(req.user._id)
     res.cookie("session_code", session_code, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-         maxAge: 7 * 24 * 60 * 60 * 1000
+        maxAge: 7 * 24 * 60 * 60 * 1000
     });
     res.redirect(`${process.env.CLIENT_URL}/dashboard`)
     

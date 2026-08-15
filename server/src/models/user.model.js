@@ -35,10 +35,12 @@ const userSchema = new mongoose.Schema({
     githubId: {
         type: String,
         unique: true,
+        default: ""
     },
     googleId: {
         type: String,
         unique: true,
+        default: ""
     },
     bio: {
         type: String,

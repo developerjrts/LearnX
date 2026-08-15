@@ -13,15 +13,9 @@ const githubOptions = {
 
 const googleOptions = {
     clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.Google_CLIENT_SECRET,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "/api/auth/google/callback",
 }
-
-console.log({
-    googleOptions,
-    githubOptions
-});
-
 
 passport.use(new GitHubStrategy(githubOptions, async(accessToken, refreshToken, profile, done) => {
     try {
@@ -32,7 +26,9 @@ passport.use(new GitHubStrategy(githubOptions, async(accessToken, refreshToken, 
         if (!user) {
             const email = profile.emails?.[0].value;
             user = await userModel.findOneAndUpdate({email}, {
-                githubId    
+                githubId,
+                isVerified: true,
+                avatar: profile.photos?.[0].value,
             });
 
         }
@@ -45,7 +41,6 @@ passport.use(new GitHubStrategy(githubOptions, async(accessToken, refreshToken, 
                 email: profile.emails?.[0].value,
                 githubId,
                 avatar: profile.photos?.[0].value,
-                provider: "github",
                 isVerified: true
             })
         } 
@@ -67,9 +62,9 @@ passport.use(new GoogleStrategy(googleOptions, async(accessToken, refreshToken, 
         if (!user) {
             const email = profile.emails?.[0].value;
             user = await userModel.findOneAndUpdate({email}, {
-                googleId
-            }, {
-                new: true
+                googleId,
+                avatar: profile.photos?.[0].value,
+                isVerified: true
             });
 
         }

@@ -1,0 +1,15 @@
+export interface User {
+    name: string,
+    username?: string,
+    email?: string,
+    avatar?: string,
+    isActive: boolean,
+    isVerified: boolean,
+    githubId: string,
+    googleId: string,
+    bio: string,
+    _id: string,
+    __v: string,
+    createdAt: string,
+    updatedAt: string,
+}

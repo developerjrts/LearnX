@@ -3,6 +3,9 @@ import NotFound from "@/Pages/NotFound"
 import LandingPage from "@/Pages/LandingPage"
 import SignIn from "@/Pages/Auth/SignIn"
 import SignUp from "@/Pages/Auth/SignUp"
+import Dashboard from "@/Pages/Dashboard"
+import UserPage from "@/Pages/UserPage"
+import Profile from "@/Pages/Profile"
 
 
 const Router = () => {
@@ -14,6 +17,9 @@ const Router = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/user/:username" element={<UserPage />} />
+        <Route path="/profile" element={<Profile />} />
     </Routes>
     </div>
     </BrowserRouter>

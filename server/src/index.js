@@ -20,14 +20,22 @@ app.use(cors({
     credentials: true
 }));
 app.use(cookieParser());
-app.use("/api", router)
-app.use(passport.initialize())
+app.use("/api", router);
+app.use(passport.initialize());
+
+app.get("/api/health", (req, res) => {
+    res.json({
+        status: "Online",
+        message: "API called!"
+    })
+})
+
 app.use((req, res, next) => {
     res.status(404).json({
         message: "Router not found",
         route: req.originalUrl
-    })
-})
+    });
+});
 
 
 connectDB().then(() => {
