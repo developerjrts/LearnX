@@ -35,11 +35,9 @@ const Nav = () => {
             justifyContent: "space-between",
             alignItems: "center"
         }}>
-            <img 
-            src={logo} 
-            alt="Logo"
-            className='w-20'
-            />
+            <h1
+className="text-xl font-bold"
+>LearnX</h1>
 
         <Box
         className="md:flex gap-10 hidden items-center justify-center "
