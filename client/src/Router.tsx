@@ -6,6 +6,8 @@ import SignUp from "@/Pages/Auth/SignUp"
 import Dashboard from "@/Pages/Dashboard"
 import UserPage from "@/Pages/UserPage"
 import Profile from "@/Pages/Profile"
+import PrivacyPolicy from "@/Pages/PrivacyPolicy"
+import TermsAndCondition from "@/Pages/TermsAndCondition"
 
 
 const Router = () => {
@@ -20,6 +22,8 @@ const Router = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/user/:username" element={<UserPage />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+       <Route path="/terms" element={<TermsAndCondition />} />
     </Routes>
     </div>
     </BrowserRouter>
